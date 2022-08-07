@@ -14,9 +14,9 @@ function SearchPage() {
       'https://imdb-api.com/API/AdvancedSearch/k_v3ejgbqw?' +
         new URLSearchParams({
           title_type: 'feature',
-          user_rating: '1.0,2.0',
+          user_rating: '1.0,3.0',
           count: '100',
-          release_date: `${queryParams.yearMin}-01-01,${queryParams.yearMax}-01-01`,
+          release_date: `${queryParams.yearMin},${queryParams.yearMax}`,
         })
     );
     const data = await res.json();
