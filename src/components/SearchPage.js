@@ -35,7 +35,7 @@ function SearchPage() {
 
   return (
     <div>
-      <h3>This is the search page!</h3>
+      <h3>This is the search page</h3>
       <SearchInputs onChangeInputs={setQueryParams} />
       <SearchTable data={movies} />
     </div>

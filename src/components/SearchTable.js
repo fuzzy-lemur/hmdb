@@ -1,4 +1,5 @@
 import DataTable from 'react-data-table-component';
+import { Link } from 'react-router-dom';
 
 const columns = [
   {
@@ -12,6 +13,13 @@ const columns = [
   {
     name: 'Description',
     selector: (row) => row.description,
+  },
+  {
+    cell: (row) => (
+      <Link to={'/details/' + row.id}>
+        <button>View details</button>
+      </Link>
+    ),
   },
 ];
 
