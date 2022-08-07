@@ -5,6 +5,7 @@ function SearchTable({ columns, data }) {
       <DataTable
           columns={columns}
           data={data}
+          pagination
       />
     );
 };
