@@ -5,6 +5,15 @@ function DetailsPage() {
   const params = useParams();
   const [titleData, setTitleData] = useState({});
 
+  const fieldsToShow = {
+    directors: 'Director',
+    stars: 'Starring',
+    genres: 'Genres',
+    plot: 'Plot',
+    countries: 'Countries',
+    releaseDate: 'Release Date',
+  };
+
   const fetchTitleData = async () => {
     const res = await fetch(
       'https://imdb-api.com/API/Title/k_v3ejgbqw/' + params.id
@@ -21,11 +30,20 @@ function DetailsPage() {
     getTitleData();
   }, []);
 
+  const listDetails = [...Object.keys(fieldsToShow)].map((field) => (
+    <div>
+      <p>
+        <b>{fieldsToShow[field]}: </b>
+        {titleData[field]}
+      </p>
+    </div>
+  ));
+
   return (
     <div>
-      <h1>This is the details page</h1>
-      <img src={titleData.image}></img>
-      <p>{JSON.stringify(titleData.image, null, 4)}</p>
+      <h1>{titleData.fullTitle}</h1>
+      <img src={titleData.image} width='350px'></img>
+      <ul>{listDetails}</ul>
     </div>
   );
 }
