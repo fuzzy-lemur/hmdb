@@ -39,8 +39,7 @@ function SearchPage() {
   return (
     <div>
       <h3>This is the search page</h3>
-      <p>{JSON.stringify(movies, null, 4)}</p>
-      {/* <SearchTable columns={columns} data={movies}/> */}
+      <SearchTable columns={columns} data={movies}/>
     </div>
   );
 }
