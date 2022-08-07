@@ -10,8 +10,6 @@ function DetailsPage() {
       'https://imdb-api.com/API/Title/k_v3ejgbqw/' + params.id
     );
     const data = await res.json();
-    console.log(data);
-
     return data;
   };
 
@@ -26,7 +24,8 @@ function DetailsPage() {
   return (
     <div>
       <h1>This is the details page</h1>
-      <h1>{JSON.stringify(titleData)}</h1>
+      <img src={titleData.image}></img>
+      <p>{JSON.stringify(titleData.image, null, 4)}</p>
     </div>
   );
 }
