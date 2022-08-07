@@ -18,3 +18,11 @@ code {
   gap: 20px;
   background-color: lightblue;
 }
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: lightblue;
+}
