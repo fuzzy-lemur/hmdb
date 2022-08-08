@@ -1,12 +1,20 @@
 import { useState } from 'react';
+import Select from 'react-select';
+import { countries } from 'country-data';
+
+const allCountryNames = countries.all.map(({ name, alpha2 }) => ({
+  value: alpha2,
+  label: name,
+}));
 
 function SearchInputs({ onChangeInputs }) {
   const [yearMin, setYearMin] = useState('');
   const [yearMax, setYearMax] = useState('');
+  const [country, setCountry] = useState('');
 
   const onSubmit = (e) => {
     e.preventDefault();
-    onChangeInputs({ yearMin, yearMax });
+    onChangeInputs({ yearMin, yearMax, country });
   };
 
   return (
@@ -30,6 +38,14 @@ function SearchInputs({ onChangeInputs }) {
             max='2022'
             value={yearMax}
             onChange={(e) => setYearMax(e.target.value)}
+          />
+        </label>
+        <label>
+          Country:
+          <Select
+            options={allCountryNames}
+            isClearable='true'
+            onChange={(e) => setCountry(e.value)}
           />
         </label>
       </div>

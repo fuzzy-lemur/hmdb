@@ -13,6 +13,7 @@ function DetailsPage() {
     genres: 'Genres',
     countries: 'Countries',
     releaseDate: 'Release Date',
+    imDbRating: 'Rating',
   };
 
   const fetchTitleData = async () => {

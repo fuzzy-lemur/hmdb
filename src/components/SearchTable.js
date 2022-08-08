@@ -11,8 +11,12 @@ const columns = [
     selector: (row) => row.title,
   },
   {
-    name: 'Description',
+    name: 'Year of release',
     selector: (row) => row.description,
+  },
+  {
+    name: 'Rating',
+    selector: (row) => row.imDbRating,
   },
   {
     cell: (row) => (
