@@ -21,19 +21,15 @@ function SearchPage() {
     );
     const data = await res.json();
     const results = data.results;
-
-    return results;
+    setSearchResults(results);
+    window.localStorage.setItem('hmdbSearchResults', JSON.stringify(results));
   };
 
   useEffect(() => {
-    const getSearchResults = async () => {
-      const res = await runSearchQuery();
-      setSearchResults(res);
-      window.localStorage.setItem('hmdbSearchResults', JSON.stringify(res));
-    };
-    getSearchResults();
-  }, []);
+    runSearchQuery();
+  }, [queryParams]);
 
+  // Load previous search results from localStorage if possible
   useEffect(() => {
     const local = window.localStorage.getItem('hmdbSearchResults');
     if (local !== null) {
