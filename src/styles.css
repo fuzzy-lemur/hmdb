@@ -39,6 +39,22 @@ code {
   padding-left: 40px;
 }
 
+.detailsBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.ratingBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: lightgoldenrodyellow;
+  padding: 10px;
+}
+
 .searchPage {
   display: flex;
   flex-direction: column;
@@ -51,7 +67,7 @@ code {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 15px;
   padding: 15px;
   background-color: lightsteelblue;
 }

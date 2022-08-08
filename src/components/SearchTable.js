@@ -31,7 +31,7 @@ const columns = [
 ];
 
 function SearchTable({ data }) {
-  return <DataTable columns={columns} data={data} pagination />;
+  return <DataTable columns={columns} data={data} pagination dense />;
 }
 
 export default SearchTable;

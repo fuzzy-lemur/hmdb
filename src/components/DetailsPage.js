@@ -49,22 +49,23 @@ function DetailsPage() {
     <div>
       <h1 style={{ textAlign: 'center' }}>{titleData.fullTitle}</h1>
       <div className='movieDetails'>
-        <img src={titleData.image} width='350px'></img>
-        <ul>{listDetails}</ul>
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'column',
-        }}
-      >
-        <h4>Rate this movie:</h4>
-        <ReactStars count={10} size={24} activeColor='#ffd700' />
-        <Link to='/search'>
-          <button>Back to search page</button>
-        </Link>
+        <img src={titleData.image} width='25%'></img>
+        <div style={{ width: '50%' }}>
+          <div className='detailsBox'>
+            <ul>{listDetails}</ul>
+            <div className='ratingBox'>
+              <h4>Rate this movie:</h4>
+              <ReactStars count={10} size={24} activeColor='#ffd700' />
+            </div>
+            <Link to='/search'>
+              <button
+                style={{ fontSize: '20px', marginTop: '20px', padding: '15px' }}
+              >
+                Back to search page
+              </button>
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
