@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ReactStars from 'react-rating-stars-component';
 import '../styles.css';
 
@@ -61,6 +62,9 @@ function DetailsPage() {
       >
         <h4>Rate this movie:</h4>
         <ReactStars count={10} size={24} activeColor='#ffd700' />
+        <Link to='/search'>
+          <button>Back to search page</button>
+        </Link>
       </div>
     </div>
   );

@@ -16,6 +16,7 @@ code {
   display: flex;
   flex-direction: row;
   gap: 20px;
+  padding-left: 40px;
   background-color: lightblue;
 }
 
@@ -36,4 +37,44 @@ code {
   flex-direction: row;
   gap: 20px;
   padding-left: 40px;
+}
+
+.searchPage {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.searchFilters {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 15px;
+  background-color: lightsteelblue;
+}
+
+input[type='number'] {
+  font-size: 16px;
+  margin: 5px;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+}
+
+select {
+  font-size: 16px;
+  margin: 5px;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+}
+
+input[type='submit'] {
+  width: 30%;
+  font-size: 18px;
+  margin: 5px;
+  padding: 5px;
 }

@@ -71,50 +71,54 @@ function SearchPage() {
   }, []);
 
   return (
-    <div>
-      <h3>This is the search page</h3>
-      <div>
+    <div className='searchPage'>
+      <div className='searchFilters'>
+        <h3>Search filters</h3>
         <form onSubmit={onSubmit}>
           <div>
-            <label>
-              From year :
-              <input
-                type='number'
-                min='1900'
-                max='2022'
-                value={queryParams.yearMin}
-                onChange={(e) =>
-                  setQueryParams({ ...queryParams, yearMin: e.target.value })
-                }
-              />
-            </label>
-            <label>
-              To :
-              <input
-                type='number'
-                min='1900'
-                max='2022'
-                value={queryParams.yearMax}
-                onChange={(e) =>
-                  setQueryParams({ ...queryParams, yearMax: e.target.value })
-                }
-              />
-            </label>
-            <label>
-              Choose a country:
-              <select
-                type='string'
-                value={queryParams.country}
-                onChange={(e) =>
-                  setQueryParams({ ...queryParams, country: e.target.value })
-                }
-              >
-                <option value={null}>-</option>
-                {listCountries}
-              </select>
-            </label>
+            <div>
+              <label>
+                From year :
+                <input
+                  type='number'
+                  min='1900'
+                  max='2022'
+                  value={queryParams.yearMin}
+                  onChange={(e) =>
+                    setQueryParams({ ...queryParams, yearMin: e.target.value })
+                  }
+                />
+              </label>
+              <label>
+                To :
+                <input
+                  type='number'
+                  min='1900'
+                  max='2022'
+                  value={queryParams.yearMax}
+                  onChange={(e) =>
+                    setQueryParams({ ...queryParams, yearMax: e.target.value })
+                  }
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                Choose a country:
+                <select
+                  type='string'
+                  value={queryParams.country}
+                  onChange={(e) =>
+                    setQueryParams({ ...queryParams, country: e.target.value })
+                  }
+                >
+                  <option value={null}>-</option>
+                  {listCountries}
+                </select>
+              </label>
+            </div>
           </div>
-          <input type='submit' value='Submit' />
+          <input type='submit' value='Apply Filters' />
         </form>
       </div>
       <div>
