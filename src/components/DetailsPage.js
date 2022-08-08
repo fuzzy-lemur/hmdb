@@ -60,12 +60,7 @@ function DetailsPage() {
         }}
       >
         <h4>Rate this movie:</h4>
-        <ReactStars
-          count={10}
-          // onChange={ratingChanged}
-          size={24}
-          activeColor='#ffd700'
-        />
+        <ReactStars count={10} size={24} activeColor='#ffd700' />
       </div>
     </div>
   );

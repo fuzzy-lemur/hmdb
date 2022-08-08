@@ -1,8 +1,13 @@
 function Footer() {
   return (
-    <div className='footer'>
-      <h3>Footer</h3>
-    </div>
+    <footer>
+      <div className='footer'>
+        <a href='https://www.github.com' target='_blank'>
+          Go to source repo
+        </a>
+        <small>Copyright &copy; 2022</small>
+      </div>
+    </footer>
   );
 }
 
