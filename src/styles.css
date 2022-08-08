@@ -26,3 +26,10 @@ code {
   right: 0;
   background-color: lightblue;
 }
+
+.movieDetails {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding-left: 40px;
+}

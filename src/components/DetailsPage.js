@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import '../styles.css';
 
 function DetailsPage() {
   const params = useParams();
   const [titleData, setTitleData] = useState({});
 
   const fieldsToShow = {
+    plot: 'Plot',
     directors: 'Director',
     stars: 'Starring',
     genres: 'Genres',
-    plot: 'Plot',
     countries: 'Countries',
     releaseDate: 'Release Date',
   };
@@ -32,18 +33,22 @@ function DetailsPage() {
 
   const listDetails = [...Object.keys(fieldsToShow)].map((field) => (
     <div>
-      <p>
-        <b>{fieldsToShow[field]}: </b>
-        {titleData[field]}
-      </p>
+      <li key={field}>
+        <p>
+          <b>{fieldsToShow[field]}: </b>
+          {titleData[field]}
+        </p>
+      </li>
     </div>
   ));
 
   return (
     <div>
-      <h1>{titleData.fullTitle}</h1>
-      <img src={titleData.image} width='350px'></img>
-      <ul>{listDetails}</ul>
+      <h1 style={{ textAlign: 'center' }}>{titleData.fullTitle}</h1>
+      <div className='movieDetails'>
+        <img src={titleData.image} width='350px'></img>
+        <ul>{listDetails}</ul>
+      </div>
     </div>
   );
 }
