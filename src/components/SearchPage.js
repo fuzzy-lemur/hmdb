@@ -3,7 +3,7 @@ import SearchInputs from './SearchInputs';
 import { useState, useEffect } from 'react';
 
 function SearchPage() {
-  const [movies, setMovies] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
   const [queryParams, setQueryParams] = useState({
     yearMin: 2000,
     yearMax: 2002,
@@ -26,18 +26,26 @@ function SearchPage() {
   };
 
   useEffect(() => {
-    const getMovies = async () => {
-      const movies = await runSearchQuery();
-      setMovies(movies);
+    const getSearchResults = async () => {
+      const res = await runSearchQuery();
+      setSearchResults(res);
+      window.localStorage.setItem('hmdbSearchResults', JSON.stringify(res));
     };
-    getMovies();
-  }, [queryParams]);
+    getSearchResults();
+  }, []);
+
+  useEffect(() => {
+    const local = window.localStorage.getItem('hmdbSearchResults');
+    if (local !== null) {
+      setSearchResults(JSON.parse(local));
+    }
+  }, []);
 
   return (
     <div>
       <h3>This is the search page</h3>
       <SearchInputs onChangeInputs={setQueryParams} />
-      <SearchTable data={movies} />
+      <SearchTable data={searchResults} />
     </div>
   );
 }

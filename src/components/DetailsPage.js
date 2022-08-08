@@ -29,11 +29,11 @@ function DetailsPage() {
       setTitleData(data);
     };
     getTitleData();
-  }, []);
+  });
 
   const listDetails = [...Object.keys(fieldsToShow)].map((field) => (
-    <div>
-      <li key={field}>
+    <div key={field}>
+      <li>
         <p>
           <b>{fieldsToShow[field]}: </b>
           {titleData[field]}
