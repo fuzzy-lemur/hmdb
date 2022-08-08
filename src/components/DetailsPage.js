@@ -4,19 +4,21 @@ import { Link } from 'react-router-dom';
 import ReactStars from 'react-rating-stars-component';
 import '../styles.css';
 
+// Fields to pull from the IMDB TitleData object and the names to display them
+// in our interface
+const fieldsToShow = {
+  plot: 'Plot',
+  directors: 'Director',
+  stars: 'Starring',
+  genres: 'Genres',
+  countries: 'Countries',
+  releaseDate: 'Release Date',
+  imDbRating: 'Rating',
+};
+
 function DetailsPage() {
   const params = useParams();
   const [titleData, setTitleData] = useState({});
-
-  const fieldsToShow = {
-    plot: 'Plot',
-    directors: 'Director',
-    stars: 'Starring',
-    genres: 'Genres',
-    countries: 'Countries',
-    releaseDate: 'Release Date',
-    imDbRating: 'Rating',
-  };
 
   const fetchTitleData = async () => {
     const res = await fetch(

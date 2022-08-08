@@ -2,17 +2,27 @@ import SearchTable from './SearchTable';
 import { useState, useEffect } from 'react';
 import { countries } from 'country-data';
 
-const listCountries = countries.all.map(({ name, alpha2 }) => (
+const countryOptions = countries.all.map(({ name, alpha2 }) => (
   <option value={alpha2}>{name}</option>
 ));
 
+// The API call params that stay fixed
+const fixedQueryParams = {
+  title_type: 'feature',
+  user_rating: '1.0,3.0',
+  count: '100',
+};
+
+// Default values for the params that are user-controlled and kept as a state
+const defaultQueryParams = {
+  yearMin: 1900,
+  yearMax: 2022,
+  country: undefined,
+};
+
 function SearchPage() {
   const [searchResults, setSearchResults] = useState([]);
-  const [queryParams, setQueryParams] = useState({
-    yearMin: 1900,
-    yearMax: 2022,
-    country: undefined,
-  });
+  const [queryParams, setQueryParams] = useState(defaultQueryParams);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -21,9 +31,7 @@ function SearchPage() {
 
   const runSearchQuery = async () => {
     const params = new URLSearchParams({
-      title_type: 'feature',
-      user_rating: '1.0,3.0',
-      count: '100',
+      ...fixedQueryParams,
       release_date: `${queryParams.yearMin},${queryParams.yearMax}`,
     });
     if (queryParams.country !== undefined) {
@@ -113,7 +121,7 @@ function SearchPage() {
                   }
                 >
                   <option value={null}>-</option>
-                  {listCountries}
+                  {countryOptions}
                 </select>
               </label>
             </div>
