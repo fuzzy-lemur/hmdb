@@ -1,7 +1,6 @@
 import SearchTable from './SearchTable';
 import { useState, useEffect } from 'react';
 import { countries } from 'country-data';
-import Select from 'react-select';
 
 const listCountries = countries.all.map(({ name, alpha2 }) => (
   <option value={alpha2}>{name}</option>
@@ -21,7 +20,6 @@ function SearchPage() {
   };
 
   const runSearchQuery = async () => {
-    console.log('running query');
     const params = new URLSearchParams({
       title_type: 'feature',
       user_rating: '1.0,3.0',
@@ -32,14 +30,30 @@ function SearchPage() {
       params.append('countries', queryParams.country);
     }
     console.log(params.toString());
-    const res = await fetch(
-      'https://imdb-api.com/API/AdvancedSearch/k_v3ejgbqw?' + params
-    );
-    const data = await res.json();
-    const results = data.results;
-    setSearchResults(results);
-    window.localStorage.setItem('hmdbSearchResults', JSON.stringify(results));
-    window.localStorage.setItem('hmdbQueryParams', JSON.stringify(queryParams));
+
+    try {
+      const response = await fetch(
+        'https://imdb-api.com/API/AdvancedSearch/k_v3ejgbqw?' + params
+      );
+      if (!response.ok) {
+        console.log(response);
+        throw new Error(`Error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      const results = data.results;
+      if (results === null) {
+        throw new Error('Empty results');
+      }
+      setSearchResults(results);
+      window.localStorage.setItem('hmdbSearchResults', JSON.stringify(results));
+      window.localStorage.setItem(
+        'hmdbQueryParams',
+        JSON.stringify(queryParams)
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   // Load previous search results from localStorage if possible

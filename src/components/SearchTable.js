@@ -9,14 +9,17 @@ const columns = [
   {
     name: 'Title',
     selector: (row) => row.title,
+    sortable: true,
   },
   {
     name: 'Year of release',
     selector: (row) => row.description,
+    sortable: true,
   },
   {
     name: 'Rating',
     selector: (row) => row.imDbRating,
+    sortable: true,
   },
   {
     cell: (row) => (

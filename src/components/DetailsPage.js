@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import ReactStars from 'react-rating-stars-component';
 import '../styles.css';
 
 function DetailsPage() {
@@ -49,6 +50,22 @@ function DetailsPage() {
       <div className='movieDetails'>
         <img src={titleData.image} width='350px'></img>
         <ul>{listDetails}</ul>
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexDirection: 'column',
+        }}
+      >
+        <h4>Rate this movie:</h4>
+        <ReactStars
+          count={10}
+          // onChange={ratingChanged}
+          size={24}
+          activeColor='#ffd700'
+        />
       </div>
     </div>
   );
