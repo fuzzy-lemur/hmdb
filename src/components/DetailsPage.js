@@ -21,8 +21,9 @@ function DetailsPage() {
   const [titleData, setTitleData] = useState({});
 
   const fetchTitleData = async () => {
+    console.log('fetching title data');
     const res = await fetch(
-      'https://imdb-api.com/API/Title/k_v3ejgbqw/' + params.id
+      `https://imdb-api.com/API/Title/${process.env.REACT_APP_API_KEY}/${params.id}`
     );
     const data = await res.json();
     return data;
@@ -34,7 +35,7 @@ function DetailsPage() {
       setTitleData(data);
     };
     getTitleData();
-  });
+  }, []);
 
   const listDetails = [...Object.keys(fieldsToShow)].map((field) => (
     <div key={field}>
@@ -51,7 +52,7 @@ function DetailsPage() {
     <div>
       <h1 style={{ textAlign: 'center' }}>{titleData.fullTitle}</h1>
       <div className='movieDetails'>
-        <img src={titleData.image} width='25%'></img>
+        <img src={titleData.image} width='25%' alt=''></img>
         <div style={{ width: '50%' }}>
           <div className='detailsBox'>
             <ul>{listDetails}</ul>

@@ -2,7 +2,13 @@ import SearchTable from './SearchTable';
 import { useState, useEffect } from 'react';
 import { countries } from 'country-data';
 
-const countryOptions = countries.all.map(({ name, alpha2 }) => (
+const countriesSorted = countries.all.sort(function (a, b) {
+  if (a.name < b.name) return -1;
+  if (a.name > b.name) return 1;
+  return 0;
+});
+
+const countryOptions = countriesSorted.map(({ name, alpha2 }) => (
   <option value={alpha2}>{name}</option>
 ));
 
@@ -10,14 +16,14 @@ const countryOptions = countries.all.map(({ name, alpha2 }) => (
 const fixedQueryParams = {
   title_type: 'feature',
   user_rating: '1.0,3.0',
-  count: '100',
+  count: process.env.REACT_APP_MAX_RESULTS,
 };
 
 // Default values for the params that are user-controlled and kept as a state
 const defaultQueryParams = {
   yearMin: 1900,
   yearMax: 2022,
-  country: undefined,
+  country: '',
 };
 
 function SearchPage() {
@@ -34,14 +40,15 @@ function SearchPage() {
       ...fixedQueryParams,
       release_date: `${queryParams.yearMin},${queryParams.yearMax}`,
     });
-    if (queryParams.country !== undefined) {
+    if (queryParams.country !== '') {
       params.append('countries', queryParams.country);
     }
     console.log(params.toString());
 
     try {
       const response = await fetch(
-        'https://imdb-api.com/API/AdvancedSearch/k_v3ejgbqw?' + params
+        `https://imdb-api.com/API/AdvancedSearch/${process.env.REACT_APP_API_KEY}?` +
+          params
       );
       if (!response.ok) {
         console.log(response);
@@ -120,7 +127,7 @@ function SearchPage() {
                     setQueryParams({ ...queryParams, country: e.target.value })
                   }
                 >
-                  <option value={null}>-</option>
+                  <option value={''}>-</option>
                   {countryOptions}
                 </select>
               </label>
